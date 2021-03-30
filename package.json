@@ -1,0 +1,24 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "Mock up version of Yelp + campgrounds",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjhern37/Yelpcamp.git"
+  },
+  "author": "Ray H.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rjhern37/Yelpcamp/issues"
+  },
+  "homepage": "https://github.com/rjhern37/Yelpcamp#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.2"
+  }
+}
