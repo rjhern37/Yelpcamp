@@ -3,6 +3,7 @@ const ejsMate = require('ejs-mate');
 const path = require('path');
 const mongoose = require('mongoose');
 const catchAsync = require('./utils/catchAsync');
+const expressError = require('./utils/expressError');
 const methodOverride = require('method-override');
 const Campground = require('./model/campground');
 // const campground = require('./model/campground');
@@ -86,8 +87,13 @@ app.delete(
 	})
 );
 
+app.all('*', (req, res, next) => {
+	next(new expressError('Page Not Found', 404));
+});
+
 app.use((err, req, res, next) => {
-	res.send('You have encountered an oopsie, The police are on their way.');
+	const { statusCode = 500, message = 'Something went wrong!' } = err;
+	res.status(statusCode).render('error');
 });
 
 app.listen(3000, () => {
