@@ -47,6 +47,7 @@ app.get('/campgrounds/new', (req, res) => {
 app.post(
 	'/campgrounds',
 	catchAsync(async (req, res, next) => {
+		if (!req.body.campground) throw new expressError('Invalid campground data', 404);
 		const campground = new Campground(req.body.campground);
 		await campground.save();
 		res.redirect(`/campgrounds/${campground._id}`);
