@@ -128,9 +128,13 @@ app.post(
 app.delete(
 	'/campgrounds/:id/reviews/:reviewId',
 	catchAsync(async (req, res) => {
+		//destructed id and reviewID from params
 		const { id, reviewId } = req.params;
+		//awaits campground and finds by ID, then pulls reviewID from reviews in mongoDB
 		await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+		//Finds reviewID and deletes
 		await Review.findByIdAndDelete(reviewId);
+		//redirect back to campground show page
 		res.redirect(`/campgrounds/${id}`);
 	})
 );
