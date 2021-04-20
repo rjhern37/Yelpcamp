@@ -33,7 +33,7 @@ app.use(methodOverride('_method'));
 const validateCampground = (req, res, next) => {
 	const { error } = campgroundSchema.validate(req.body);
 	if (error) {
-		const msg = error.details.map(el => el.message).join(',');
+		const msg = error.details.map((el) => el.message).join(',');
 		throw new expressError(msg, 400);
 	} else {
 		next();
@@ -43,7 +43,7 @@ const validateCampground = (req, res, next) => {
 const validateReview = (req, res, next) => {
 	const { error } = reviewSchema.validate(req.body);
 	if (error) {
-		const msg = error.details.map(el => el.message).join(',');
+		const msg = error.details.map((el) => el.message).join(',');
 		throw new expressError(msg, 400);
 	} else {
 		next();
@@ -81,7 +81,6 @@ app.get(
 	'/campgrounds/:id',
 	catchAsync(async (req, res) => {
 		const campground = await Campground.findById(req.params.id).populate('reviews');
-		console.log(campground);
 		res.render('campgrounds/show', { campground });
 	})
 );
@@ -123,6 +122,16 @@ app.post(
 		await review.save();
 		await campground.save();
 		res.redirect(`/campgrounds/${campground._id}`);
+	})
+);
+
+app.delete(
+	'/campgrounds/:id/reviews/:reviewId',
+	catchAsync(async (req, res) => {
+		const { id, reviewId } = req.params;
+		await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+		await Review.findByIdAndDelete(reviewId);
+		res.redirect(`/campgrounds/${id}`);
 	})
 );
 
