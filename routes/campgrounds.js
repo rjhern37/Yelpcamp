@@ -5,7 +5,6 @@ const { campgroundSchema } = require('../schemas.js');
 
 const expressError = require('../utils/expressError');
 const Campground = require('../model/campground');
-// const Review = require('./model/review');
 
 const validateCampground = (req, res, next) => {
 	const { error } = campgroundSchema.validate(req.body);
