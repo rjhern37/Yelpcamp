@@ -59,6 +59,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //Middleware that passes 'flash' through to each route making it available to each route if needed
 app.use((req, res, next) => {
+	res.locals.currentUser = req.user;
 	res.locals.success = req.flash('success');
 	res.locals.error = req.flash('error');
 	next();
