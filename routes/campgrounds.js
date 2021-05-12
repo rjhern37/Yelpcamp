@@ -9,13 +9,13 @@ router
 	.get(catchAsync(campgrounds.index))
 	.post(isLoggedIn, validateCampground, catchAsync(campgrounds.createNewCampground));
 
+router.get('/new', isLoggedIn, campgrounds.renderNewForm);
+router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm));
+
 router
 	.route('/:id')
 	.get(catchAsync(campgrounds.showCampground))
 	.put(isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampground))
 	.delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
-
-router.get('/new', isLoggedIn, campgrounds.renderNewForm);
-router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm));
 
 module.exports = router;
