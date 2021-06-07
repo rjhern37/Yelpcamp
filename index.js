@@ -21,6 +21,12 @@ const reviewsRoutes = require('./routes/reviews');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 
+//Mongo Atlas DB
+// const dbUrl = process.env.DB_URL;
+
+//Former MongoDB connection
+// mongodb://localhost:27017/yelp-camp
+
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
 	useNewUrlParser: true,
 	useCreateIndex: true,
