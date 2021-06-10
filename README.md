@@ -4,7 +4,7 @@ Yelp Camp
 
 
 # Project URL
-https://github.com/Rjhern37/yelp-camp
+https://pacific-tor-37129.herokuapp.com/
 
 ## Description 
 This app was created with the camping enthusiast in mind. This app allows users to review the many campgrounds they have visited throughout the country. Simply register and you are able to give reviews to existing campgrounds or create a new campground for others to review.
